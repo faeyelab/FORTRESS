@@ -216,7 +216,7 @@ If you use this code in your research, please cite our paper:
 @article{fortress2025,
   title={FORTRESS: Function-composition Optimized Real-Time Resilient Structural Segmentation via Kolmogorov-Arnold Enhanced Spatial Attention Networks},
   author={Thrainer, Christina and Ferdaus, Md Meftahul and Abdelguerfi, Mahdi and Guetl, Christian and Sloan, Steven and Niles, Kendall N. and Pathak, Ken},
-  journal={IEEE Transactions on Cybernetics},
+  journal={Submitted to IEEE Transactions on Cybernetics},
   year={2025}
 }
 ```
@@ -235,7 +235,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions and collaborations, please contact:
 - Md Meftahul Ferdaus: mferdaus@uno.edu
-- Mahdi Abdelguerfi: gulfsceidirector@uno.edu
+
 
 ## About
 

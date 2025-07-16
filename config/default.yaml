@@ -1,0 +1,76 @@
+# FORTRESS Model Configuration
+
+# Dataset Configuration
+dataset:
+  name: "s2ds"
+  train_path: "/path/to/s2ds/train"
+  val_path: "/path/to/s2ds/val"
+  test_path: "/path/to/s2ds/test"
+  num_classes: 7
+  input_size: [256, 256]
+  batch_size: 16
+  num_workers: 4
+
+# Model Configuration
+model:
+  name: "EnhancedSAUNetWithKAN"
+  in_channels: 3
+  num_classes: 7
+  start_filters: 32
+  use_kan: true
+  block_size: 7
+  keep_prob: 0.9
+
+# Training Configuration
+training:
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 1e-5
+  optimizer: "AdamW"
+  scheduler: "CosineAnnealingLR"
+  scheduler_params:
+    T_max: 50
+    eta_min: 1e-6
+  
+  # Loss Configuration
+  loss:
+    type: "DeepSupervisionLoss"
+    base_loss: "CombinedLoss"
+    weights: [0.5, 0.3, 0.2]  # CE, Dice, Focal
+    ds_weights: [1.0, 0.4, 0.3, 0.2]  # Deep supervision weights
+    class_weights: [0.25, 2.5, 2.5, 2.0, 1.5, 1.5, 1.0]  # s2DS class weights
+
+  # Regularization
+  gradient_clipping: 1.0
+  
+# Evaluation Configuration
+evaluation:
+  metrics: ["iou", "f1", "fwiou", "balanced_accuracy", "mcc"]
+  save_predictions: true
+  plot_results: true
+  num_plot_samples: 8
+
+# Hardware Configuration
+hardware:
+  device: "cuda"
+  mixed_precision: false
+  deterministic: true
+  benchmark: false
+
+# Reproducibility
+seed: 42
+
+# Logging and Saving
+logging:
+  log_interval: 20  # Log every N batches
+  save_model: true
+  save_best_only: true
+  monitor_metric: "val_iou"
+  
+# Output Paths
+paths:
+  results_dir: "./results"
+  plots_dir: "./results/plots"
+  models_dir: "./models"
+  logs_dir: "./logs"
+
